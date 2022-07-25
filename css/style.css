@@ -27,7 +27,7 @@ form{
     box-shadow: 0px 0px 20px #bebebe;
 }
 
-h2{
+h1{
     font-size: 2rem;
     width: 100%;
     text-align: center;
@@ -108,4 +108,27 @@ label{
     margin-top: 15px;
     cursor:pointer;
     word-wrap: break-word ;
+}
+
+.general-error{
+    background:#c82a2a;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+
+
+}
+
+.input-error{
+    border: 1px solid #c82a2a;
+}
+
+.error{
+    color: #c82a2a;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+
 }
