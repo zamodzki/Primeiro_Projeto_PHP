@@ -123,6 +123,7 @@ label{
 
 .input-error{
     border: 1px solid #c82a2a;
+        
 }
 
 .error{
@@ -130,5 +131,19 @@ label{
     text-align: center;
     margin-bottom: 10px;
     font-weight: bold;
+    font-size: 14px;
 
+}
+
+.success{
+    background:#2ac874;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.hidden{
+   display: none
 }
