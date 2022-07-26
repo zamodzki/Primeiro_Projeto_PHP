@@ -1,5 +1,7 @@
 <?php
-$mode = 'local';
+session_start();
+
+$mode = 'online';
 
 if($mode =='local'){
     $host = "localhost";
@@ -33,3 +35,20 @@ function cleanPost($data){
     return $data;
 
 }
+
+function auth($token){
+    //VERIFICAR AUTORIZAÇÃO
+    global $pdo;
+    $sql = $pdo->prepare("SELECT * FROM usuarios WHERE token=? LIMIT 1");
+    $sql->execute(array($token));
+    $user = $sql->fetch(PDO::FETCH_ASSOC);
+
+    if(!$user){
+        return false;
+    }else{
+        return $user;
+    }
+}
+
+
+?>

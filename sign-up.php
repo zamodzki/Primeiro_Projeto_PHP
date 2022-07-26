@@ -1,4 +1,12 @@
 <?php
+// REQUIRE PHPMAILER
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'config/PHPMailer/src/Exception.php';
+require 'config/PHPMailer/src/PHPMailer.php';
+require 'config/PHPMailer/src/SMTP.php';
+
 
 //  VERIFICANDO A EXISTENCIA DA POSTAGEM
 require('config/connection.php');
@@ -43,15 +51,41 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
           if(!$user){
             $recover_password = "";
             $token = "";
+            $cod_confirm = uniqid();
             $status = "novo";
             $date_register = date('d/m/Y');
-            $sql = $pdo->prepare("INSERT INTO usuarios VALUES (null,?,?,?,?,?,?,?)");
-            if($sql->execute(array($name,$email,$pass_cript,$recover_password,$token,$status,$date_register))){
-                header('location: index.php?result=ok');
+            $sql = $pdo->prepare("INSERT INTO usuarios VALUES (null,?,?,?,?,?,?,?,?)");
+            if($sql->execute(array($name,$email,$pass_cript,$recover_password,$token,$cod_confirm,$status,$date_register))){
+                // MODO LOCAL
+                if($mode =="local"){
+                    header('location: index.php?result=ok');
+                }
+                
+                // MODO PRODUÇÃO
+                if($mode =="online"){
+                    $mail = new PHPMailer(true);
+                    
+                    try{
+                    $mail->setFrom('zamodzki@hotmail.com', 'Rafael'); // ORIGEM DO EMAIL
+                    $mail->addAddress($email, $name);  
+                    $mail->isHTML(true);                                  //Set email format to HTML
+                    $mail->Subject = 'Confirmação de cadastro';
+                    $mail->Body    = '<h1> Por favor confirme seu e-mail abaixo:</h1><br><br><a style ="background:blue; color:white; text-decoration:none; padding:20px; border-radius:5px;" href="https://seusistema.com.br/confirmacao.php?cod_confirm='.$cod_confirm.'">Confirmação E-mail<a/>';
+                    
+                    $mail->send();
+                        header('location: thanks.php');
+
+
+                    } catch (Exception $e) {
+                    echo "Ocorreu um erro ao enviar e-mail de confirmação {$mail->ErrorInfo}";
+
+                }
+            }
             }
           }else{
             $general_error = "Email já cadastrado!";
           }
+
         }
     
     }

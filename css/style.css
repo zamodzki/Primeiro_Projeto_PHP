@@ -147,3 +147,21 @@ label{
 .hidden{
    display: none
 }
+
+.text-center{
+    text-align: center;
+}
+
+.gmail{
+    background: rgb(152, 167, 157);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.outlook{
+    background: #038bb4;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
