@@ -80,7 +80,7 @@ if(isset($_GET['result'])){
             <img class= "input-icon"src="img/password.png">        
             <input type="password" name="password" placeholder="Digite sua senha" required>
         </div>
-        
+        <a href="forgot.php">Esqueceu a senha?</a>
         <button  class="btn-blue"type="submit">Fazer Login</button>
         <a href="sign-up.php">Ainda não tenho cadastro</a>
     </form>

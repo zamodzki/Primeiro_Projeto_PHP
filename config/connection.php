@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$mode = 'online';
+$mode = 'local';
 
 if($mode =='local'){
     $host = "localhost";

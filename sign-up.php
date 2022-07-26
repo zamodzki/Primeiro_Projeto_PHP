@@ -66,11 +66,11 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
                     $mail = new PHPMailer(true);
                     
                     try{
-                    $mail->setFrom('zamodzki@hotmail.com', 'Rafael'); // ORIGEM DO EMAIL
+                    $mail->setFrom('seusistema@sistema.com', 'sistema'); // ORIGEM DO EMAIL
                     $mail->addAddress($email, $name);  
                     $mail->isHTML(true);                                  //Set email format to HTML
                     $mail->Subject = 'Confirmação de cadastro';
-                    $mail->Body    = '<h1> Por favor confirme seu e-mail abaixo:</h1><br><br><a style ="background:blue; color:white; text-decoration:none; padding:20px; border-radius:5px;" href="https://seusistema.com.br/confirmacao.php?cod_confirm='.$cod_confirm.'">Confirmação E-mail<a/>';
+                    $mail->Body    = '<h1> Por favor confirme seu e-mail abaixo:</h1><a style ="background:blue; color:white; text-decoration:none; padding:20px; border-radius:5px;" href="https://seusistema.com.br/confirm.php?cod_confirm='.$cod_confirm.'">Confirmação E-mail <br><br><a/><p>Equipe BuscaRep</p>';
                     
                     $mail->send();
                         header('location: thanks.php');
